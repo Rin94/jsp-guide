@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="helloworld.com.modelo.ConnectionManager" %>
+<%@ page import="helloworld.com.controlador.ControladorRegistro" %>
 <%@ page import="java.sql.*" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -36,34 +37,17 @@
 
 <%
 
-	String nombre=request.getParameter("nombre");
-	String apellido=request.getParameter("apellido");
-	String correo=request.getParameter("email");
-	String pass=request.getParameter("password");
-	String select[] = request.getParameterValues("tecnologia"); 
-	if (select != null && select.length != 0) {
-		out.println("You have selected: ");
-		for (int i = 0; i < select.length; i++) {
-			out.println(select[i]); 
-		}
-	}
-	Statement stmt = null;
-	Connection con = ConnectionManager.getConnection();
-	stmt = con.createStatement();
+
+if (ControladorRegistro.NuevoRegistro(request)){
+	out.println("<p> Registro Exitoso</p>");
+}
+else{
+	out.println("<p> Registro No Exitoso</p>");
 	
-	String sql= "INSERT INTO USUARIOS (correo,contrasena,nombre, apellido) VALUES('"+correo+"','"+pass+"','"+nombre+"','"+apellido+"')";
-	stmt.executeUpdate(sql,Statement.RETURN_GENERATED_KEYS);
-	ResultSet rs = stmt.getGeneratedKeys();
-	int key=0;
-	if ( rs.next() ) {
-	    // Retrieve the auto generated key(s).
-	     key= rs.getInt(1);
-	}
-	for (int i=0; i<select.length;i++){
-		stmt = con.createStatement();
-		sql="INSERT INTO USUARIOS_TECNOLOGIA(id_usuario, id_tecnologia) VALUES("+key+","+select[i]+")";
-		stmt.executeUpdate(sql);
-	}
+}
+
+	
+	
 //Class.forName("com.mysql.jdbc.Driver");
 //java.sql.Connection miConexion=java.sql.DriverManager.getConnection("jdbc:mysql://localhost:8889/proyecto_jsp","root","root");
 //java.sql.Statement miStat=miConexion.createStatement();

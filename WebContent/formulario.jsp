@@ -50,7 +50,7 @@
       <input type="text" class="form-control" id="pwd" placeholder="Enter password" name="apellido">
     </div>
   </div>
-    <div class="form-group">
+ <div class="form-group">
   <div class="col-sm-10"> 
   <label class="checkbox-inline"><input type="checkbox" name="tecnologia" value="1">Java</label>
   <label class="checkbox-inline"><input type="checkbox" name="tecnologia" value="2">Javascript</label>

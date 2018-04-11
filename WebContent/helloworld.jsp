@@ -14,11 +14,8 @@
 <title>Hello World</title>
 </head>
 <body>
-<div class="jumbotron text-center" style="background-color:#1894ed; color: white ">
-  <h1>Hello world of Java: JSP</h1>
-  <p>Resize this responsive page to see the effect!</p> 
-  <center><img src="img/java-img-png.jpg" width="100px" height="100px" class="img-circle" /></center>
-</div>
+<jsp:include page="navigation.html"></jsp:include>
+<jsp:include page="jumbotron.html"></jsp:include>
 <div class="container">
 
 <div class="col-lg-1"></div>
